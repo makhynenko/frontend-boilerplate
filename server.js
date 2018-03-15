@@ -2,28 +2,30 @@ import express from 'express';
 import path from 'path';
 
 const PORT = 7700;
-const PUBLIC_PATH = __dirname + '/public';
+const PUBLIC_PATH = path.join(__dirname, '/dist.dev');
 const app = express();
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 if (isDevelopment) {
+    /* eslint-disable global-require */
     const webpack = require('webpack');
     const webpackConfig = require('./webpack.development.config.babel');
     const compiler = webpack(webpackConfig);
     app.use(require('webpack-dev-middleware')(compiler, {
         noInfo: true,
-        publicPath: webpackConfig.output.publicPath
+        publicPath: webpackConfig.output.publicPath,
     }));
     app.use(require('webpack-hot-middleware')(compiler));
+    /* eslint-enable global-require */
 } else {
     app.use(express.static(PUBLIC_PATH));
 }
 
-app.all("*", function(req, res) {
+app.all('*', (req, res) => {
     res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'));
 });
 
 
-app.listen(PORT, function() {
-    console.log('Listening on port ' + PORT + '...');
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT} ...`);
 });

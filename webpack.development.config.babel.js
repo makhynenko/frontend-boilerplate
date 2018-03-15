@@ -10,7 +10,7 @@ module.exports = {
     devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, './public'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
     },
     module: {
         loaders: [
@@ -18,29 +18,29 @@ module.exports = {
                 test: /.jsx?$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
-            }
+            },
         ],
         rules: [
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ['babel-loader']
+                use: ['babel-loader'],
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: ['babel-loader', 'eslint-loader']
-            }
-        ]
+                use: ['babel-loader', 'eslint-loader'],
+            },
+        ],
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
-            inject: "body"
+            inject: 'body',
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
     ],
     resolve: {
         extensions: ['.js', '.jsx'],
-    }
+    },
 };
