@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 
 const PORT = 7700;
-const PUBLIC_PATH = path.join(__dirname, '/dist.dev');
+const PUBLIC_PATH = path.join(__dirname, '/public');
 const app = express();
 
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -27,5 +27,5 @@ app.all('*', (req, res) => {
 
 
 app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT} ...`);
+    console.log(`Listening on port ${PORT}...`); // eslint-disable-line no-console
 });

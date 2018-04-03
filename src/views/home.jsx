@@ -12,6 +12,7 @@ export default class Home extends Component {
                 <h2>-- Router</h2>,
                 <h2>-- Hot reload</h2>,
                 <h2>-- Development & Production builds </h2>,
+                <h2>-- Test Commit Line </h2>,
             ]
         );
     }
