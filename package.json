@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-dev": "set NODE_ENV=development&& babel-node server.js",
-    "build-prod": "set NODE_ENV=production&& webpack --config webpack.production.config.babel.js && babel-node server.js"
+    "build-prod": "set NODE_ENV=production&& webpack --config webpack.production.config.babel.js && babel-node server.js",
+    "lint": "eslint -c .eslintrc ./client/**/*.js ./client/**/*.jsx"
   },
   "author": "",
   "license": "ISC",
