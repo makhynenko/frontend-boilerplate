@@ -3,6 +3,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 
 module.exports = {
+    mode: 'production',
     entry: './src/index.js',
     devtool: 'source-map',
     output: {
@@ -10,23 +11,11 @@ module.exports = {
         filename: 'bundle.min.js',
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /.jsx?$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
-            },
-        ],
-        rules: [
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                use: ['babel-loader'],
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: ['babel-loader', 'eslint-loader'],
             },
         ],
     },
@@ -34,11 +23,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html',
             inject: 'body',
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: true,
-            },
         }),
     ],
     resolve: {

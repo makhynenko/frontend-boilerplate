@@ -3,6 +3,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 
 module.exports = {
+    mode: 'development',
     entry: [
         './src/index.js',
         'webpack-hot-middleware/client?reload=true',
@@ -13,23 +14,11 @@ module.exports = {
         filename: 'bundle.js',
     },
     module: {
-        loaders: [
-            {
-                test: /.jsx?$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/,
-            },
-        ],
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: ['babel-loader'],
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: ['babel-loader', 'eslint-loader'],
+                loader: 'babel-loader',
             },
         ],
     },
