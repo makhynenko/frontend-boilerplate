@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import history from 'connect-history-api-fallback';
 
 const PORT = 7700;
 const PUBLIC_PATH = path.join(__dirname, '/public');
@@ -11,6 +12,7 @@ if (isDevelopment) {
     const webpack = require('webpack');
     const webpackConfig = require('./webpack.development.config.babel');
     const compiler = webpack(webpackConfig);
+    app.use(history());
     app.use(require('webpack-dev-middleware')(compiler, {
         noInfo: true,
         publicPath: webpackConfig.output.publicPath,
@@ -19,12 +21,10 @@ if (isDevelopment) {
     /* eslint-enable global-require */
 } else {
     app.use(express.static(PUBLIC_PATH));
+    app.all('*', (req, res) => {
+        res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'));
+    });
 }
-
-app.all('*', (req, res) => {
-    res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'));
-});
-
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}...`); // eslint-disable-line no-console
