@@ -15,7 +15,9 @@ export default class Wrapper extends Component {
         const { children } = this.props;
         return (
             <styled.Container>
-                <styled.Header>Header</styled.Header>
+                <styled.Header>
+                    <styled.HeaderContent>Header</styled.HeaderContent>
+                </styled.Header>
                 <styled.Content>
                     {children}
                 </styled.Content>
