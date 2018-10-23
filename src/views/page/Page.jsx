@@ -33,6 +33,12 @@ const columns = [
         name: 'Name',
         id: 'name',
         width: '200px',
+        headerStyle: {
+            paddingLeft: '40px',
+        },
+        cellStyle: {
+            paddingLeft: '40px',
+        },
     },
     {
         name: 'Price',

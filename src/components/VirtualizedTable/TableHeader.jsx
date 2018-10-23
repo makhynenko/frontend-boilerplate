@@ -16,6 +16,7 @@ class TableHeader extends Component {
                             width={c.width}
                             height={height}
                             key={c.id}
+                            style={c.headerStyle}
                         >
                             <styled.HeaderCellValue
                                 title={c.title || c.name}
@@ -32,19 +33,9 @@ class TableHeader extends Component {
 
 TableHeader.propTypes = {
     columns: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-    columnsForChouser: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
     header: PropTypes.bool.isRequired,
-    handleSwitchColumn: PropTypes.func,
-    actions: PropTypes.shape(),
-    sorting: PropTypes.shape(),
-};
-
-TableHeader.defaultProps = {
-    handleSwitchColumn: undefined,
-    actions: undefined,
-    sorting: undefined,
 };
 
 export default TableHeader;
