@@ -1,6 +1,6 @@
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import path from 'path';
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
     mode: 'development',
@@ -10,7 +10,8 @@ module.exports = {
     ],
     devtool: 'inline-source-map',
     output: {
-        path: path.resolve(__dirname, './public'),
+        path: path.resolve(__dirname, 'public'),
+        publicPath: '/',
         filename: 'bundle.js',
     },
     module: {
