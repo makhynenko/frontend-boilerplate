@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
-    height: 60px;
+    height: 48px;
     padding-left: 40px;
     background-color: slategray;
     display: flex;

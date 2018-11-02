@@ -16,7 +16,7 @@ export default class Wrapper extends Component {
         return (
             <styled.Container>
                 <styled.Header>
-                    <styled.HeaderContent>Header</styled.HeaderContent>
+                    kjhk
                 </styled.Header>
                 <styled.Content>
                     {children}

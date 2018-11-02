@@ -21,6 +21,21 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
             },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(svg|png|ttf|eot|woff|woff2)$/i,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192,
+                        },
+                    },
+                ],
+            },
         ],
     },
     plugins: [
@@ -32,5 +47,9 @@ module.exports = {
     ],
     resolve: {
         extensions: ['.js', '.jsx'],
+        modules: [
+            path.resolve(__dirname, 'src'),
+            'node_modules',
+        ],
     },
 };
