@@ -65,8 +65,6 @@ class List extends Component {
         this.props.actions.fetch();
     };
 
-
-
     handleRowSelect = (item) => {
         this.props.actions.selectItem(item);
     };
@@ -90,7 +88,7 @@ class List extends Component {
                         primaryKey="id"
                     />
                     <styled.ItemDetailsContainer>
-                        {this.props.selectedItem && this.props.selectedItem.id}
+                        {this.props.itemDetails && this.props.itemDetails.model}
                     </styled.ItemDetailsContainer>
                 </styled.Content>
             </styled.Container>
@@ -103,6 +101,7 @@ function mapStateToProps(state) {
     return {
         dataList: state.list.dataList,
         selectedItem: state.list.selectedItem,
+        itemDetails: state.list.itemDetails,
     };
 }
 
