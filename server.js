@@ -1,6 +1,6 @@
-import express from 'express';
-import path from 'path';
-import history from 'connect-history-api-fallback';
+const express = require('express');
+const path = require('path');
+const history = require('connect-history-api-fallback');
 
 const PORT = 7700;
 const PUBLIC_PATH = path.join(__dirname, '/public');
@@ -10,7 +10,7 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 if (isDevelopment) {
     /* eslint-disable global-require */
     const webpack = require('webpack');
-    const webpackConfig = require('./webpack.development.config.babel');
+    const webpackConfig = require('./webpack.development.config');
     const compiler = webpack(webpackConfig);
     app.use(history());
     app.use(require('webpack-dev-middleware')(compiler, {
