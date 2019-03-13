@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import AppRouter from './routes';
+// import AppRouter from './routes';
+import Home from './views/home/Home';
 
-ReactDOM.render(<AppRouter />, document.getElementById('app'));
+ReactDOM.render(<Home />, document.getElementById('app'));
