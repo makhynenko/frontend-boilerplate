@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import './styles.css';
+// import logo from './src/resources/logo_2.svg';
+// import trash from './src/resources/trash.png';
+import List from './List';
 
 const generateId = () => {
     return Math.floor(Math.random() * 100000);
 };
 
-let data = [
+
+
+let mockData = [
     {
         id: generateId(),
         title: 'List 1',
@@ -36,39 +41,49 @@ export default class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            exampleStateField: 'Hi',
+            showSider: false,
+            data: mockData,
         };
     }
 
-    renderTask = task => (
-        <div className="row" key={task.id}>
-            <input className="checkbox" type="checkbox" id="task_1" name="task_1" checked />
-            <div>{task.body}</div>
+    renderSider = () => (
+        <div id="sider" class="overlay">
+            <div class="popup">
+                <a class="close" id="popup-close" onClick={this.closeSider} href="#">&times;</a>
+                <div class="content">
+                    Thank to pop me out of that button, but now i'm done so you can close this window.
+          </div>
+                <div class="sider-add" onClick={this.addList}>Add</div>
+            </div>
         </div>
-    );
+    )
 
-    renderList = list => (
-        <div className="list" key={list.id}>
-            <div className="header">
-                <h3 className="title">{list.title}</h3>
-                <img className="icon" alt="Delete" src="../resources/trash.png" />
-            </div>
-            <div className="list-content">
-                {list.tasks.map(task => this.renderTask(task))}
-            </div>
-            <div className="add">Add to-do</div>
-        </div>
-    );
+    handleOpenSider = () => {
+        this.setState({ showSider: true })
+    }
+
+    closeSider = () => {
+        this.setState({ showSider: false })
+    }
+
+    addList = () => {
+        this.setState({ showSider: false, data: [... this.state.data, { id: generateId(), title: "newList", tasks: [] }] })
+
+    }
+
+    removeList = (id) => {
+        this.setState({ data: this.state.data.filter(i => i.id !==id)})
+    }
+
 
     render() {
-        const { exampleStateField } = this.state;
-        console.log(exampleStateField);
+        const { data } = this.state;
         return (
             <div className="app">
                 <div className="main-header">
                     <div className="header-logo">
                         <a href="test.html">
-                            <img src="../resources/di-logo.svg" alt="CSGO Howl" />
+                            <img alt="CSGO Howl" />
                         </a>
                     </div>
                     <div className="header-text">To</div>
@@ -76,10 +91,16 @@ export default class Home extends Component {
                     <div className="header-text">do</div>
                 </div>
                 <div className="content">
-                    {data.map(list => this.renderList(list))}
+                    {data.map(list => <List
+                        id={list.id}
+                        title={list.title}
+                        tasks={list.tasks}
+                        removeList={this.removeList}
+                    />)}
                 </div>
-                <div className="plus-button" id="plus-button">+</div>
-            </div>
+                <div className="plus-button" id="plus-button" onClick={this.handleOpenSider}> +</div>
+                {this.state.showSider && this.renderSider()}
+            </div >
         );
     }
 }
