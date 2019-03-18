@@ -1,23 +1,35 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './styles.css';
 import Task from './Task';
 
 
-
 export default class List extends Component {
 
-    renderTask = task => (
-        <div className="row" key={task.id}>
-            <input className="checkbox" type="checkbox" id="task_1" name="task_1" checked />
-            <div>{task.body}</div>
-        </div>
-    );
-
-    handleDeleteClick =() => {
-        this.props.removeList(this.props.id)
+    constructor(props) {
+        super(props);
+        this.state = {
+            newTask: ''
+        };
     }
+
+
+    handleDeleteClick = () => {
+        this.props.removeList(this.props.id)
+    };
+
+    handleNewTaskChange = (e) => {
+        this.setState({newTask: e.target.value})
+    };
+
+    handleAddTaskPress = (e) => {
+        console.log(e.key);
+        if (e.key === 'Enter') {
+            this.props.addTask(this.props.id, this.state.newTask)
+            this.setState({newTask: ''})
+        }
+    };
+
     render() {
-        console.log(this.props);
         return (
             <div className="list" key={this.props.id}>
                 <div className="header">
@@ -27,12 +39,14 @@ export default class List extends Component {
                 <div className="list-content">
                     {this.props.tasks.map(task => (
                         <Task
-                         id={task.id}
+                            id={task.id}
                             body={task.body}
                         />
                     ))}
                 </div>
-                <div className="add">Add to-do</div>
+                <input onKeyPress={this.handleAddTaskPress} onChange={this.handleNewTaskChange} placeholder="Add TODO"
+                       value={this.state.newTask}
+                       className="add"/>
             </div>
         );
     }
