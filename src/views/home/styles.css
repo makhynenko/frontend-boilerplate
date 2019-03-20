@@ -89,11 +89,23 @@ body {
 .row {
     display: flex;
     align-self: flex-start;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.row:hover{
+    background-color: lightgray;
+}
+
+.row-content{
+    display: flex;
+    align-items: center;
 }
 
 .checkbox {
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
 }
 
 .add {
@@ -162,4 +174,9 @@ body {
     height: 50px;
     justify-content: center;
     align-items: center;
+}
+
+.delete-task-icon{
+    height: 17px;
+    width: 17px;
 }

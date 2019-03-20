@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './styles.css';
 import Task from './Task';
+import deleteimg from '../../resources/trash.png';
 
 
 export default class List extends Component {
@@ -22,7 +23,6 @@ export default class List extends Component {
     };
 
     handleAddTaskPress = (e) => {
-        console.log(e.key);
         if (e.key === 'Enter') {
             this.props.addTask(this.props.id, this.state.newTask)
             this.setState({newTask: ''})
@@ -34,7 +34,7 @@ export default class List extends Component {
             <div className="list" key={this.props.id}>
                 <div className="header">
                     <h3 className="title">{this.props.title}</h3>
-                    <img className="icon" alt="Delete" onClick={this.handleDeleteClick}/>
+                    <img className="icon" alt="Delete" onClick={this.handleDeleteClick} src={deleteimg}/>
                 </div>
                 <div className="list-content">
                     {this.props.tasks.map(task => (
