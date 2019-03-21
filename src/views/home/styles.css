@@ -176,7 +176,12 @@ body {
     align-items: center;
 }
 
+.row:hover .delete-task-icon{
+visibility: visible;
+}
+
 .delete-task-icon{
+    visibility: hidden;
     height: 17px;
     width: 17px;
 }
