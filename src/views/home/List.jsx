@@ -45,7 +45,9 @@ export default class List extends Component {
     };
 
     render() {
-        const { id, title, tasks } = this.props;
+        const {
+            id, title, tasks, removeTask, checkTask,
+        } = this.props;
         const { newTask } = this.state;
 
         return (
@@ -57,10 +59,12 @@ export default class List extends Component {
                 <div className="list-content">
                     {tasks.map(task => (
                         <Task
-                          idList={id}
-                          id={task.id}
-                          body={task.body}
-                          removeTask={task.removeTask}
+                            idList={id}
+                            id={task.id}
+                            body={task.body}
+                            removeTask={removeTask}
+                            isChecked={task.checked}
+                            checkTask={checkTask}
                         />
                     ))}
                 </div>

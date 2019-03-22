@@ -14,6 +14,7 @@ const mockData = [
             {
                 id: '1',
                 body: 'Task 1',
+                checked: true,
             },
         ],
     },
@@ -24,10 +25,12 @@ const mockData = [
             {
                 id: '1',
                 body: 'Task 2',
+                checked: true,
             },
             {
                 id: '2',
                 body: 'Task 3',
+                checked: false,
             },
         ],
     },
@@ -77,7 +80,7 @@ export default class Home extends Component {
         this.setState({
             data: data.map(i => (i.id === idList ? {
                 ...i,
-                tasks: [...i.tasks, { id: generateId(), body: value }],
+                tasks: [...i.tasks, { id: generateId(), body: value, checked: false }],
             } : i)),
         });
     };
@@ -88,6 +91,19 @@ export default class Home extends Component {
             data: data.map(list => (list.id === idList ? {
                 ...list,
                 tasks: list.tasks.filter(task => task.id !== idTask),
+            } : list)),
+        });
+    }
+
+    checkedTask = (idList, idTask, value) => {
+        const { data } = this.state;
+        this.setState({
+            data: data.map(list => (list.id === idList ? {
+                ...list,
+                tasks: list.tasks.map(task => (task.id === idTask ? {
+                    ...task,
+                    checked: value,
+                } : task)),
             } : list)),
         });
     }
@@ -115,6 +131,7 @@ export default class Home extends Component {
                             removeList={this.removeList}
                             addTask={this.addTask}
                             removeTask={this.removeTask}
+                            checkTask={this.checkedTask}
                         />
                     ))}
                 </div>

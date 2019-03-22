@@ -14,7 +14,10 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/no-unescaped-entities": "off",
     "react/jsx-one-expression-per-line": "off",
+    "react/jsx-indent-props": ["error", 4],
     "indent": ["error", 4, {"SwitchCase": 1}],
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
     "react/jsx-indent": ["error", 4],
     "import/no-extraneous-dependencies": [
       0
