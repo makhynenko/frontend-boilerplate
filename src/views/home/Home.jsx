@@ -41,8 +41,19 @@ export default class Home extends Component {
         super(props);
         this.state = {
             showSider: false,
-            data: mockData,
+            data: this.getFromLocalStorage(),
         };
+    }
+
+    getFromLocalStorage = () => {
+        const data = localStorage.getItem('todo');
+        return data ? JSON.parse(data) : mockData;
+    }
+
+    saveToLocalStorage = () => {
+        const { data } = this.state;
+        const todo = JSON.stringify(data);
+        localStorage.setItem('todo', todo);
     }
 
     renderSider = () => (
@@ -67,12 +78,12 @@ export default class Home extends Component {
 
     addList = () => {
         const { data } = this.state;
-        this.setState({ showSider: false, data: [...data, { id: generateId(), title: 'newList', tasks: [] }] });
+        this.setState({ showSider: false, data: [...data, { id: generateId(), title: 'newList', tasks: [] }] }, this.saveToLocalStorage);
     };
 
     removeList = (id) => {
         const { data } = this.state;
-        this.setState({ data: data.filter(i => i.id !== id) });
+        this.setState({ data: data.filter(i => i.id !== id) }, this.saveToLocalStorage);
     };
 
     addTask = (idList, value) => {
@@ -82,7 +93,7 @@ export default class Home extends Component {
                 ...i,
                 tasks: [...i.tasks, { id: generateId(), body: value, checked: false }],
             } : i)),
-        });
+        }, this.saveToLocalStorage);
     };
 
     removeTask = (idList, idTask) => {
@@ -92,7 +103,7 @@ export default class Home extends Component {
                 ...list,
                 tasks: list.tasks.filter(task => task.id !== idTask),
             } : list)),
-        });
+        }, this.saveToLocalStorage);
     }
 
     checkedTask = (idList, idTask, value) => {
@@ -105,7 +116,7 @@ export default class Home extends Component {
                     checked: value,
                 } : task)),
             } : list)),
-        });
+        }, this.saveToLocalStorage);
     }
 
     render() {
