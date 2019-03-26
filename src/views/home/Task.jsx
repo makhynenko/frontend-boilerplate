@@ -18,7 +18,9 @@ export default class Task extends Component {
     }
 
     handleCheckClick = () => {
-        const { idList, id, checkTask, isChecked } = this.props;
+        const {
+            idList, id, checkTask, isChecked,
+        } = this.props;
         checkTask(idList, id, !isChecked);
     }
 

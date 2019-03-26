@@ -69,11 +69,11 @@ export default class List extends Component {
                     ))}
                 </div>
                 <input
-                  onKeyPress={this.handleAddTaskPress}
-                  onChange={this.handleNewTaskChange}
-                  placeholder="Add TODO"
-                  value={newTask}
-                  className="add"
+                    onKeyPress={this.handleAddTaskPress}
+                    onChange={this.handleNewTaskChange}
+                    placeholder="Add TODO"
+                    value={newTask}
+                    className="add"
                 />
             </div>
         );

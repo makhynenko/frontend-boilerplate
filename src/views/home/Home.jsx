@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './styles.css';
-// import logo from './src/resources/logo_2.svg';
+import logo from '../../resources/logo_2.svg';
 // import trash from './src/resources/trash.png';
 import List from './List';
+import Sider from './Sider';
 
 const generateId = () => Math.floor(Math.random() * 100000);
 
@@ -55,18 +56,6 @@ export default class Home extends Component {
         const todo = JSON.stringify(data);
         localStorage.setItem('todo', todo);
     }
-
-    renderSider = () => (
-        <div id="sider" className="overlay">
-            <div className="popup">
-                <a className="close" id="popup-close" onClick={this.closeSider} href="#">&times;</a>
-                <div className="content">
-                    Thank to pop me out of that button, but now i'm done so you can close this window.
-                </div>
-                <div className="sider-add" onClick={this.addList}>Add</div>
-            </div>
-        </div>
-    );
 
     handleOpenSider = () => {
         this.setState({ showSider: true });
@@ -126,7 +115,7 @@ export default class Home extends Component {
                 <div className="main-header">
                     <div className="header-logo">
                         <a href="test.html">
-                            <img alt="CSGO Howl" />
+                            <img alt="CSGO Howl" src={logo} />
                         </a>
                     </div>
                     <div className="header-text">To</div>
@@ -147,7 +136,14 @@ export default class Home extends Component {
                     ))}
                 </div>
                 <div className="plus-button" id="plus-button" onClick={this.handleOpenSider}> +</div>
-                {showSider && this.renderSider()}
+                {
+                    showSider && (
+                        <Sider
+                            onClose={this.closeSider}
+                            addList={this.addList}
+                        />
+                    )
+                }
             </div>
         );
     }

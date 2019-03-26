@@ -185,3 +185,23 @@ visibility: visible;
     height: 17px;
     width: 17px;
 }
+.sider-title {
+    align-self: flex-start;
+    border: none;
+    font-size: 24px;
+    margin: 0 16px;
+    width: 100%;
+}
+
+.sider-title:focus {
+    outline: none;
+}
+
+.sider-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    flex: auto;
+    overflow: auto;
+}
