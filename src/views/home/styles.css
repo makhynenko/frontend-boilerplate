@@ -205,3 +205,16 @@ visibility: visible;
     flex: auto;
     overflow: auto;
 }
+
+.list-title {
+    align-self: flex-start;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 16px;
+    width: 100%;
+}
+
+.list-title:focus {
+    outline: none;
+}

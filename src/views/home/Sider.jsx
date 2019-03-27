@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import './styles.css';
+import { generateId } from '../../helper';
 
 
 export default class Sider extends Component {
@@ -18,10 +19,15 @@ export default class Sider extends Component {
 
     addList = () => {
         const { title } = this.state;
-        // const list = {
-            // id: 
-        // }
+        const { addList } = this.props;
+        const list = {
+            id: generateId(),
+            title,
+            tasks: [],
+        };
+        addList(list);
     };
+
 
     handleTitleChange = (e) => {
         this.setState({ title: e.target.value });

@@ -15,6 +15,7 @@ export default class List extends Component {
         removeList: PropTypes.func.isRequired,
         title: PropTypes.string,
         removeTask: PropTypes.func.isRequired,
+        updateTitle: PropTypes.func.isRequired,
         id: PropTypes.number.isRequired,
     };
 
@@ -44,6 +45,11 @@ export default class List extends Component {
         }
     };
 
+    handleTitleChange = (e) => {
+        const { id, updateTitle } = this.props;
+        updateTitle(id, e.target.value);
+    }
+
     render() {
         const {
             id, title, tasks, removeTask, checkTask,
@@ -53,7 +59,13 @@ export default class List extends Component {
         return (
             <div className="list" key={id}>
                 <div className="header">
-                    <h3 className="title">{title}</h3>
+                    <input
+                        // onKeyPress={this.handleAddTaskPress}
+                        onChange={this.handleTitleChange}
+                        placeholder="Enter title..."
+                        value={title}
+                        className="list-title"
+                    />
                     <img className="icon" alt="Delete" onClick={this.handleDeleteClick} src={deleteimg} />
                 </div>
                 <div className="list-content">

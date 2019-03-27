@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import './styles.css';
 import logo from '../../resources/logo_2.svg';
-// import trash from './src/resources/trash.png';
 import List from './List';
 import Sider from './Sider';
-
-const generateId = () => Math.floor(Math.random() * 100000);
+import { generateId } from '../../helper';
 
 const mockData = [
     {
@@ -57,6 +55,7 @@ export default class Home extends Component {
         localStorage.setItem('todo', todo);
     }
 
+
     handleOpenSider = () => {
         this.setState({ showSider: true });
     };
@@ -65,9 +64,9 @@ export default class Home extends Component {
         this.setState({ showSider: false });
     };
 
-    addList = () => {
+    addList = (list) => {
         const { data } = this.state;
-        this.setState({ showSider: false, data: [...data, { id: generateId(), title: 'newList', tasks: [] }] }, this.saveToLocalStorage);
+        this.setState({ showSider: false, data: [...data, list] }, this.saveToLocalStorage);
     };
 
     removeList = (id) => {
@@ -84,6 +83,16 @@ export default class Home extends Component {
             } : i)),
         }, this.saveToLocalStorage);
     };
+
+    updateListTitle = (idList, value) => {
+        const { data } = this.state;
+        this.setState({
+            data: data.map(list => (list.id === idList ? {
+                ...list,
+                title: value,
+            } : list)),
+        }, this.saveToLocalStorage);
+    }
 
     removeTask = (idList, idTask) => {
         const { data } = this.state;
@@ -132,6 +141,7 @@ export default class Home extends Component {
                             addTask={this.addTask}
                             removeTask={this.removeTask}
                             checkTask={this.checkedTask}
+                            updateTitle={this.updateListTitle}
                         />
                     ))}
                 </div>
@@ -139,8 +149,8 @@ export default class Home extends Component {
                 {
                     showSider && (
                         <Sider
-                            onClose={this.closeSider}
                             addList={this.addList}
+                            onClose={this.closeSider}
                         />
                     )
                 }
