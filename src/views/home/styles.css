@@ -78,12 +78,12 @@ body {
     justify-content: space-between;
     height: 40px;
     min-height: 40px;
-    align-items: center;
+    align-items: baseline;
 }
 
 .icon {
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
 }
 
 .row {
